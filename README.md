@@ -2,6 +2,12 @@
 
 Proyecto semestral – Avance #1.
 
+## Integrantes
+
+- Christopher Alexis Coronel Cadiz
+- Isaaid Caicedo Ebed Chavez
+- Garriga Alexander
+
 ## Caso
 Sistema para registrar y administrar eventos académicos, participantes,
 inscripciones, horarios, espacios, categorías, reportes y notificaciones.
