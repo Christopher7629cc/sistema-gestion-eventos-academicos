@@ -1,0 +1,98 @@
+
+digraph G {
+  graph [rankdir=LR, bgcolor="white", nodesep=0.45, ranksep=0.7, splines=ortho];
+  node [shape=plain, fontname="Arial"];
+  edge [fontname="Arial", fontsize=9, color="#333333"];
+
+  Usuario [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">
+      <TR><TD BGCOLOR="#E8E8E8"><B>Usuario</B></TD></TR>
+      <TR><TD ALIGN="LEFT">- id: int<BR/>- nombre: String<BR/>- correo: String<BR/>- contrasena: String<BR/>- rol: String<BR/>- activo: boolean</TD></TR>
+      <TR><TD ALIGN="LEFT">+ iniciarSesion(...): boolean<BR/>+ cerrarSesion(): void<BR/>+ actualizarPerfil(...): void<BR/>+ tieneAcceso(): boolean</TD></TR>
+    </TABLE>
+  >];
+
+  Participante [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">
+      <TR><TD BGCOLOR="#E8E8E8"><B>Participante</B></TD></TR>
+      <TR><TD ALIGN="LEFT">- matricula: String<BR/>- carrera: String<BR/>- telefono: String</TD></TR>
+      <TR><TD ALIGN="LEFT">+ inscribirse(...): Inscripcion<BR/>+ cancelarInscripcion(...): void<BR/>+ consultarEventos(): List&lt;Evento&gt;<BR/>+ verificarPerfil(): boolean</TD></TR>
+    </TABLE>
+  >];
+
+  Organizador [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">
+      <TR><TD BGCOLOR="#E8E8E8"><B>Organizador</B></TD></TR>
+      <TR><TD ALIGN="LEFT">- idOrganizador: int<BR/>- dependencia: String</TD></TR>
+      <TR><TD ALIGN="LEFT">+ crearEvento(...): void<BR/>+ modificarEvento(...): void<BR/>+ asignarEspacio(...): void<BR/>+ asignarHorario(...): void</TD></TR>
+    </TABLE>
+  >];
+
+  Evento [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">
+      <TR><TD BGCOLOR="#E8E8E8"><B>Evento</B></TD></TR>
+      <TR><TD ALIGN="LEFT">- idEvento: int<BR/>- nombre: String<BR/>- descripcion: String<BR/>- fecha: LocalDate<BR/>- cupoMaximo: int<BR/>- estado: String</TD></TR>
+      <TR><TD ALIGN="LEFT">+ validarCupo(): boolean<BR/>+ registrarInscripcion(...): Inscripcion<BR/>+ asignarEspacio(...): void<BR/>+ asignarHorario(...): void<BR/>+ generarReporte(): Reporte</TD></TR>
+    </TABLE>
+  >];
+
+  Inscripcion [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">
+      <TR><TD BGCOLOR="#E8E8E8"><B>Inscripcion</B></TD></TR>
+      <TR><TD ALIGN="LEFT">- idInscripcion: int<BR/>- fechaInscripcion: LocalDateTime<BR/>- estado: String<BR/>- codigoAcceso: String</TD></TR>
+      <TR><TD ALIGN="LEFT">+ confirmar(): void<BR/>+ cancelar(): void<BR/>+ validarCupo(): boolean<BR/>+ generarNotificacion(): Notificacion</TD></TR>
+    </TABLE>
+  >];
+
+  Horario [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">
+      <TR><TD BGCOLOR="#E8E8E8"><B>Horario</B></TD></TR>
+      <TR><TD ALIGN="LEFT">- idHorario: int<BR/>- fecha: LocalDate<BR/>- horaInicio: LocalTime<BR/>- horaFin: LocalTime</TD></TR>
+      <TR><TD ALIGN="LEFT">+ validarDisponibilidad(): boolean<BR/>+ asignarEvento(...): void<BR/>+ modificarHorario(...): void</TD></TR>
+    </TABLE>
+  >];
+
+  Espacio [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">
+      <TR><TD BGCOLOR="#E8E8E8"><B>Espacio</B></TD></TR>
+      <TR><TD ALIGN="LEFT">- idEspacio: int<BR/>- nombre: String<BR/>- ubicacion: String<BR/>- capacidad: int<BR/>- disponible: boolean</TD></TR>
+      <TR><TD ALIGN="LEFT">+ validarDisponibilidad(): boolean<BR/>+ reservar(): void<BR/>+ liberar(): void<BR/>+ tieneCapacidad(...): boolean</TD></TR>
+    </TABLE>
+  >];
+
+  Categoria [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">
+      <TR><TD BGCOLOR="#E8E8E8"><B>Categoria</B></TD></TR>
+      <TR><TD ALIGN="LEFT">- idCategoria: int<BR/>- nombre: String<BR/>- descripcion: String</TD></TR>
+      <TR><TD ALIGN="LEFT">+ clasificarEvento(...): void<BR/>+ obtenerEventos(): List&lt;Evento&gt;</TD></TR>
+    </TABLE>
+  >];
+
+  Reporte [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">
+      <TR><TD BGCOLOR="#E8E8E8"><B>Reporte</B></TD></TR>
+      <TR><TD ALIGN="LEFT">- idReporte: int<BR/>- fechaGeneracion: LocalDateTime<BR/>- tipo: String<BR/>- contenido: String</TD></TR>
+      <TR><TD ALIGN="LEFT">+ generarReporteAsistencia(...): String<BR/>+ calcularPorcentajeAsistencia(): double<BR/>+ exportar(): void</TD></TR>
+    </TABLE>
+  >];
+
+  Notificacion [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">
+      <TR><TD BGCOLOR="#E8E8E8"><B>Notificacion</B></TD></TR>
+      <TR><TD ALIGN="LEFT">- idNotificacion: int<BR/>- mensaje: String<BR/>- fechaEnvio: LocalDateTime<BR/>- leida: boolean<BR/>- tipo: String</TD></TR>
+      <TR><TD ALIGN="LEFT">+ enviar(): void<BR/>+ marcarComoLeida(): void<BR/>+ generarAlertaEventoProximo(...): void</TD></TR>
+    </TABLE>
+  >];
+
+  Participante -> Usuario [dir=back, arrowtail=empty, arrowhead=none, label=" hereda"];
+  Organizador -> Usuario [dir=back, arrowtail=empty, arrowhead=none, label=" hereda"];
+  Organizador -> Evento [label=" 1..* administra"];
+  Evento -> Categoria [label=" 1"];
+  Evento -> Horario [label=" 1"];
+  Evento -> Espacio [label=" 1"];
+  Participante -> Inscripcion [label=" 0..*"];
+  Evento -> Inscripcion [label=" 0..*"];
+  Evento -> Reporte [label=" 0..*"];
+  Inscripcion -> Notificacion [label=" 0..*"];
+  Evento -> Notificacion [label=" 0..*"];
+}
