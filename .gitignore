@@ -1,0 +1,7 @@
+# Archivos compilados y salida de las pruebas
+*.class
+out/
+build/
+reporte_evento_*.txt
+.idea/
+.vscode/
