@@ -1,0 +1,23 @@
+Compilacion: OK (javac)
+Ejecucion: OK (java utp.eventos.App)
+
+OK - Inicio de sesion
+OK - Permisos de usuario
+OK - Clasificacion del evento
+OK - Modificacion real del evento
+OK - Espacio libre en otra franja
+OK - Prevencion de cruce de horarios
+OK - Modificacion de horario sin colisiones
+OK - Consulta de eventos
+OK - Inscripcion confirmada y codigo de acceso
+OK - Notificacion enviada
+OK - Prevencion de inscripcion duplicada
+OK - Asistencia real registrada
+Evento: Charla Java actualizada
+Inscripciones confirmadas: 1
+Asistentes: 1
+Porcentaje de asistencia: 100.00%
+OK - Cancelacion y recuperacion de cupo
+OK - Notificacion por cancelacion
+OK - Cierre de sesion
+Todas las pruebas finalizaron correctamente.
